@@ -1,9 +1,101 @@
 body {
-  /* Set line height to 1.5 times the font size
-	   and use the OS’s UI font as the website font
-	 */
-  font: 100%/1.5 system-ui;
+  /* Basics */ 
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, sans-serif;
+  line-height: 1.5;
+
+  max-width: 100ch; 
+  margin-inline: auto;
+  padding-inline: 1em;
 }
+
+/* --- STEP 2: Navigation --- */
+nav {
+  display: flex;
+  justify-content: space-around;  /*evenly spaced links */
+  align-items: center;
+  gap: 1em;
+  padding-block: 0.5em;
+  border-bottom: 1px solid #ef7ac0;
+  height: 60px;                  /* fixes consistent nav height */
+  box-sizing: border-box;
+}
+
+/* Default link style */
+nav a {
+  text-decoration: none;
+  color: black;
+  padding: 1em;
+  text-align: center;
+  line-height: 1;
+  height: 100%;                 /*fills nav height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease, border-bottom 0.3s ease;
+  box-sizing: border-box;
+
+  border-bottom: 4px solid transparent; /* reserves border space */
+}
+
+/* Hover effect */
+nav a:hover {
+  background-color: #f8e1f1; 
+  border-bottom: 4px solid #d25ea9; 
+}
+
+/* Highlight current page */
+nav a.current {
+  background-color: #f8e1ef;
+  border-bottom: 4px solid #d25ea9;
+}
+
+/* --- CONTACT --- */
+form {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.5em 1em;
+  align-items: center;
+}
+
+form label {
+  grid-column: 1 / 2;
+}
+
+form input,
+form textarea,
+form button {
+  font: inherit;  /* inherit font styles */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+form button {
+  grid-column: 1 / -1; /* button spans full row */
+}
+
+/* --- PROJECT GRID --- */
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
+  gap: 1em;
+  margin-block-start: 1em;
+}
+
+.projects article {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 3;
+  gap: 1em;
+  padding: 1em;
+
+  h2 {
+    margin: 0;
+  }
+}
+
+/* --- HEADINGS --- */
 h1 {
-    color: darkolivegreen;
+  color: rgb(211, 82, 174);
 }
