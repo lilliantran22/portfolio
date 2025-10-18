@@ -10,6 +10,42 @@ body {
   padding-inline: 1em;
 }
 
+/* Lab 3 fixing color scheme */
+:root {
+  /* Light mode defaults */
+  --text-color: black;
+  --bg-color: white;
+  --accent-color: #ef7ac0;
+  --accent-hover: #d25ea9;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Dark mode overrides */
+    --text-color: white;
+    --bg-color: #1a1a1a;
+    --accent-color: #ef7ac0;
+    --accent-hover: #f48bc9;
+  }
+}
+  /*this is probably way too convoluted for what it is*/
+@media (prefers-color-scheme: dark), [data-theme="dark"]:root {
+  :root {
+    --text-color: white;
+    --bg-color: #1a1a1a;
+    --accent-color: #ef7ac0;
+    --accent-hover: #f48bc9;
+  }
+}
+
+[data-theme="light"]:root {
+  --text-color: black;
+  --bg-color: white;
+  --accent-color: #ef7ac0;
+  --accent-hover: #d25ea9;
+}
+
+
 /* --- STEP 2: Navigation --- */
 nav {
   display: flex;
@@ -25,7 +61,7 @@ nav {
 /* Default link style */
 nav a {
   text-decoration: none;
-  color: black;
+  color: var(--text-color);
   padding: 1em;
   text-align: center;
   line-height: 1;
@@ -98,4 +134,17 @@ form button {
 /* --- HEADINGS --- */
 h1 {
   color: rgb(211, 82, 174);
+}
+
+/* Lab 3 - dark mode omg */
+.color-scheme {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 0.9em;
+}
+
+/* allow system dark/light mode */
+html {
+  color-scheme: light dark;
 }
