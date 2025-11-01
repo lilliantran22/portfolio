@@ -65,7 +65,7 @@ export async function fetchJSON(url) {
   }
 }
 
-// lab 4 render proj
+// lab 4 render proj - MODIFIED for Lab 5
 export function renderProjects(projects, containerElement, headingLevel = 'h2') {
   if (!containerElement) return;
   containerElement.innerHTML = ''; // clear old content
@@ -76,6 +76,7 @@ export function renderProjects(projects, containerElement, headingLevel = 'h2') 
       <${headingLevel}>${project.title}</${headingLevel}>
       <img src="${project.image}" alt="${project.title}">
       <p>${project.description}</p>
+      <small> ${project.year}</small>
     `;
     containerElement.appendChild(article);
   }

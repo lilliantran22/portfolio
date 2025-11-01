@@ -4,19 +4,19 @@ body {
   padding: 0;
   font-family: system-ui, sans-serif;
   line-height: 1.5;
-
   max-width: 100ch; 
   margin-inline: auto;
   padding-inline: 1em;
 }
 
-/* Lab 3 fixing color scheme */
+/* ===== COLOR SCHEME ===== */
 :root {
   /* Light mode defaults */
   --text-color: black;
   --bg-color: white;
   --accent-color: #ef7ac0;
   --accent-hover: #d25ea9;
+  --border-color: #e0e0e0;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -26,68 +26,121 @@ body {
     --bg-color: #1a1a1a;
     --accent-color: #ef7ac0;
     --accent-hover: #f48bc9;
-  }
-}
-  /*this is probably way too convoluted for what it is*/
-@media (prefers-color-scheme: dark), [data-theme="dark"]:root {
-  :root {
-    --text-color: white;
-    --bg-color: #1a1a1a;
-    --accent-color: #ef7ac0;
-    --accent-hover: #f48bc9;
+    --border-color: #444;
   }
 }
 
-[data-theme="light"]:root {
+[data-theme="dark"] {
+  --text-color: white;
+  --bg-color: #1a1a1a;
+  --accent-color: #ef7ac0;
+  --accent-hover: #f48bc9;
+  --border-color: #444;
+}
+
+[data-theme="light"] {
   --text-color: black;
   --bg-color: white;
   --accent-color: #ef7ac0;
   --accent-hover: #d25ea9;
+  --border-color: #e0e0e0;
 }
 
+/* Apply colors */
+body {
+  color: var(--text-color);
+  background-color: var(--bg-color);
+}
 
-/* --- STEP 2: Navigation --- */
+/* ===== NAVIGATION ===== */
 nav {
   display: flex;
-  justify-content: space-around;  /*evenly spaced links */
+  justify-content: space-around;
   align-items: center;
   gap: 1em;
   padding-block: 0.5em;
-  border-bottom: 1px solid #ef7ac0;
-  height: 60px;                  /* fixes consistent nav height */
+  border-bottom: 1px solid var(--accent-color);
+  height: 60px;
   box-sizing: border-box;
 }
 
-/* Default link style */
 nav a {
   text-decoration: none;
   color: var(--text-color);
   padding: 1em;
   text-align: center;
   line-height: 1;
-  height: 100%;                 /*fills nav height */
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: background-color 0.3s ease, border-bottom 0.3s ease;
   box-sizing: border-box;
-
-  border-bottom: 4px solid transparent; /* reserves border space */
+  border-bottom: 4px solid transparent;
 }
 
-/* Hover effect */
 nav a:hover {
-  background-color: #f8e1f1; 
-  border-bottom: 4px solid #d25ea9; 
+  background-color: color-mix(in srgb, var(--accent-color) 15%, transparent);
+  border-bottom: 4px solid var(--accent-hover);
 }
 
-/* Highlight current page */
 nav a.current {
-  background-color: #f8e1ef;
-  border-bottom: 4px solid #d25ea9;
+  background-color: color-mix(in srgb, var(--accent-color) 10%, transparent);
+  border-bottom: 4px solid var(--accent-color);
 }
 
-/* --- CONTACT --- */
+/* ===== PROJECT GRID ===== */
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
+  gap: 1em;
+  margin-block-start: 1em;
+}
+
+.projects article {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75em;
+  padding: 1em;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background-color: var(--bg-color);
+}
+
+.projects h2 {
+  margin: 0;
+  color: var(--accent-color);
+  font-size: 1.2em;
+  border-bottom: 2px solid var(--accent-color);
+  padding-bottom: 0.25em;
+}
+
+.projects img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.projects p {
+  margin: 0;
+  flex-grow: 1;
+}
+
+.projects small {
+  color: color-mix(in srgb, var(--text-color) 70%, transparent);
+  font-size: 0.85em;
+  margin-top: auto;
+  padding-top: 0.5em;
+  border-top: 1px solid var(--border-color);
+}
+
+/* ===== HEADINGS ===== */
+h1 {
+  color: var(--accent-color);
+  margin-bottom: 0.5em;
+}
+
+/* ===== FORM STYLES ===== */
 form {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -102,41 +155,31 @@ form label {
 form input,
 form textarea,
 form button {
-  font: inherit;  /* inherit font styles */
+  font: inherit;
   width: 100%;
   box-sizing: border-box;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  padding: 0.5em;
+  border-radius: 4px;
 }
 
 form button {
-  grid-column: 1 / -1; /* button spans full row */
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 0.75em;
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  cursor: pointer;
 }
 
-/* --- PROJECT GRID --- */
-.projects {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
-  gap: 1em;
-  margin-block-start: 1em;
+form button:hover {
+  background-color: var(--accent-hover);
 }
 
-.projects article {
-  display: grid;
-  grid-template-rows: subgrid;
-  grid-row: span 3;
-  gap: 1em;
-  padding: 1em;
-
-  h2 {
-    margin: 0;
-  }
-}
-
-/* --- HEADINGS --- */
-h1 {
-  color: rgb(211, 82, 174);
-}
-
-/* Lab 3 - dark mode omg */
+/* ===== COLOR SCHEME TOGGLE ===== */
 .color-scheme {
   position: absolute;
   top: 1rem;
@@ -144,7 +187,100 @@ h1 {
   font-size: 0.9em;
 }
 
-/* allow system dark/light mode */
+/* ===== LAB 5 PIE CHART STYLES ===== */
+.container {
+  display: flex;
+  align-items: center;
+  gap: 2em;
+  margin: 2em auto;
+  flex-wrap: wrap;
+}
+
+#projects-pie-plot {
+  max-width: 20em;
+  margin-block: 2em;
+  overflow: visible;
+}
+
+/* Legend */
+.legend {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
+  list-style: none;
+  padding: 1em;
+  margin: 0;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  flex: 1;
+  gap: 0.5em;
+  background-color: var(--bg-color);
+}
+
+.legend li {
+  display: flex;
+  align-items: center;
+  gap: 0.35em;
+  padding: 0.25em;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.legend li:hover {
+  background-color: color-mix(in srgb, var(--accent-color) 10%, transparent);
+}
+
+.swatch {
+  width: 1em;
+  height: 1em;
+  background-color: var(--color);
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+/* Pie Chart Interactions */
+#projects-pie-plot:has(path:hover) path:not(:hover) {
+  opacity: 0.5;
+}
+
+path {
+  transition: 300ms;
+  cursor: pointer;
+}
+
+/* Selected state */
+.selected {
+  --color: #7e5b92 !important;
+}
+
+path.selected {
+  fill: var(--color) !important;
+}
+
+.legend li.selected {
+  background-color: color-mix(in srgb, var(--accent-color) 15%, transparent);
+  font-weight: bold;
+}
+
+/* Search bar */
+.searchBar {
+  width: 100%;
+  padding: 0.75em;
+  margin-bottom: 1.5em;
+  font: inherit;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  border-radius: 4px;
+}
+
+.searchBar:focus {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 1px;
+}
+
+/* System color scheme support */
 html {
   color-scheme: light dark;
 }
