@@ -284,3 +284,75 @@ path.selected {
 html {
   color-scheme: light dark;
 }
+
+
+/* Lab 6 Styles */
+.tooltip {
+  position: fixed;
+  background: white;
+  padding: 1em;
+  border-radius: 4px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  border: 1px solid #ccc;
+  z-index: 1000;
+}
+
+.gridlines line {
+  stroke: #e0e0e0;
+  stroke-width: 1;
+}
+
+circle.selected {
+  fill: #ff6b6b !important;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.5em 1em;
+}
+
+.stats dt {
+  font-weight: bold;
+}
+
+.stats dd {
+  margin: 0;
+}
+
+circle {
+  transition: 200ms;
+}
+
+/* Resume Styles */
+.contact-info {
+  text-align: center;
+  margin-bottom: 2em;
+  color: var(--text-color);
+}
+
+.experience-item,
+.education-item,
+.volunteer-item {
+  margin-bottom: 1.5em;
+}
+
+.date {
+  color: color-mix(in srgb, var(--text-color) 60%, transparent);
+  font-style: italic;
+  margin: 0.25em 0 0.5em 0;
+}
+
+section h3 {
+  border-bottom: 2px solid var(--accent-color);
+  padding-bottom: 0.25em;
+  margin-top: 1.5em;
+}
+
+section ul {
+  margin: 0.5em 0;
+}
+
+section li {
+  margin-bottom: 0.25em;
+}
